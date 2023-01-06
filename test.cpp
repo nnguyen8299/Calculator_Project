@@ -1,6 +1,6 @@
 // HelloWindowsDesktop.cpp
 // compile with: /D_UNICODE /DUNICODE /DWIN32 /D_WINDOWS /c
-#include <windows.h>
+#include <Windows.h>
 #include <stdlib.h>
 #include <string.h>
 #include <tchar.h>
@@ -13,10 +13,10 @@ using namespace std;
 // Global variables
 
 // The main window class name.
-    static TCHAR szWindowClass[] = _T("DesktopApp");
+    static TCHAR szWindowClass[] = _T("CalcApp");
 
 // The string that appears in the application's title bar.
-    static TCHAR szTitle[] = _T("Windows Desktop Guided Tour Application");
+    static TCHAR szTitle[] = _T("Simple Calculator App");
 
     HINSTANCE hInst;
 
@@ -46,7 +46,7 @@ int CALLBACK WinMain(
         if (!RegisterClassEx(&wcex)) {
             MessageBox (NULL,
                 _T("Call to RegisterClassEx failed!"),
-                _T("Windows Desktop Guided Tour"),
+                _T("Calculator App"),
                 0);
 
             return 1;
@@ -74,7 +74,7 @@ int CALLBACK WinMain(
             MessageBox (
                 NULL,
                 _T("Call to CreateWindow failed!"),
-                _T("Windows Desktop Guided Tour"),
+                _T("Calculator App"),
                 0);
                 
             return 1;
@@ -111,7 +111,8 @@ int CALLBACK WinMain(
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
     PAINTSTRUCT ps;
     HDC hdc;
-    TCHAR greeting[] = _T("Hello, Windows Desktop!"); 
+    string s = "Old Message!";
+    const wchar_t* greeting = L"Old Message!"; 
     const RECT* structure;
     switch (message) {
         case WM_PAINT:
@@ -119,11 +120,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
             // Here your application is laid out.
             // For this introduction, we just print out "Hello, Windows desktop!"
             // in the top left corner.
-            ExtTextOut(hdc, 50, 50, ETO_OPAQUE, structure, greeting, _tcslen(greeting), nullptr);
+            TextOutW(hdc, 10, 25, greeting, s.length());
             // End application-specific layout section.
             EndPaint(hWnd, &ps);
             break;
-        case WM_DESTROY:
+        case WM_DESTROY: 
             PostQuitMessage(0);
             break;
         default:

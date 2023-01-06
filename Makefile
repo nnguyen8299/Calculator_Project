@@ -5,8 +5,11 @@ CPP_FLAGS := -std=c++11
 # not sure if SRC is necessary
 SRC       := C:\Users\nnguy\Documents\Calculator_Project
 
+
+all: main
+
 # This links the two object files into an executable "a"
-a.out: main.o calculator.o
+main: main.o calculator.o
 	$(CC) $(CPP_FLAGS) main.o calculator.o
 
 # This creates the object file main.o by using main.cpp and 
@@ -19,3 +22,4 @@ main.o: main.cpp calculator.h
 calculator.o: calculator.cpp calculator.h
 	$(CC) $(CPP_FLAGS) -c calculator.cpp
 
+# to compile text.exe use: g++ -std=c++11 -o test test.cpp -lgdi32
