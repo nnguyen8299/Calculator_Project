@@ -4,6 +4,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <tchar.h>
+#include <string>
+#include <gdiplus.h>
+#include <wingdi.h>
+
+using namespace std;
 
 // Global variables
 
@@ -102,18 +107,19 @@ int CALLBACK WinMain(
 // WM_PAINT - Paint the main window
 // WM_DESTROY - post a quit message and return
 
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
     PAINTSTRUCT ps;
     HDC hdc;
-    TCHAR greeting[] = _T("Hello, Windows desktop!");
-    
+    TCHAR greeting[] = _T("Hello, Windows Desktop!"); 
+    const RECT* structure;
     switch (message) {
         case WM_PAINT:
             hdc = BeginPaint(hWnd, &ps);
             // Here your application is laid out.
             // For this introduction, we just print out "Hello, Windows desktop!"
             // in the top left corner.
-            TextOut(hdc, 5, 5, greeting, _tcslen(greeting));
+            ExtTextOut(hdc, 50, 50, ETO_OPAQUE, structure, greeting, _tcslen(greeting), nullptr);
             // End application-specific layout section.
             EndPaint(hWnd, &ps);
             break;
