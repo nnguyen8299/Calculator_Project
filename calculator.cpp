@@ -1,9 +1,5 @@
 #include "calculator.h"
 
-Calculator::Calculator() { 
-
-}
-
 double Calculator::Calculate(double x, char oper, double y) {
     switch (oper) {
         case '+':
