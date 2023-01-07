@@ -64,11 +64,81 @@ int CALLBACK WinMain(
             szTitle,
             WS_OVERLAPPEDWINDOW,
             CW_USEDEFAULT, CW_USEDEFAULT,
-            500, 100,
+            250, 400,
             NULL,
             NULL,
             hInstance,
             NULL);
+
+        HWND hwnd_add_Button = CreateWindow( 
+            _T("BUTTON"), 
+            _T("+"),
+            WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
+            180, 
+            255, 
+            40, 
+            40, 
+            hWnd, 
+            NULL, 
+            (HINSTANCE)GetWindowLongPtr(hWnd, GWLP_HINSTANCE), 
+            NULL
+        );
+
+        HWND hwnd_equal_Button = CreateWindow( 
+            _T("BUTTON"), 
+            _T("="),
+            WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
+            180, 
+            300, 
+            40, 
+            40, 
+            hWnd, 
+            NULL, 
+            (HINSTANCE)GetWindowLongPtr(hWnd, GWLP_HINSTANCE), 
+            NULL
+        );
+
+        HWND hwnd_sub_Button = CreateWindow( 
+            _T("BUTTON"), 
+            _T("-"),
+            WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
+            180, 
+            210, 
+            40, 
+            40, 
+            hWnd, 
+            NULL, 
+            (HINSTANCE)GetWindowLongPtr(hWnd, GWLP_HINSTANCE), 
+            NULL
+        );
+
+        HWND hwnd_mult_Button = CreateWindow( 
+            _T("BUTTON"), 
+            _T("x"),
+            WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
+            180, 
+            165, 
+            40, 
+            40, 
+            hWnd, 
+            NULL, 
+            (HINSTANCE)GetWindowLongPtr(hWnd, GWLP_HINSTANCE), 
+            NULL
+        );
+
+        HWND hwnd_divide_Button = CreateWindow( 
+            _T("BUTTON"), 
+            _T("/"),
+            WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
+            180, 
+            120, 
+            40, 
+            40, 
+            hWnd, 
+            NULL, 
+            (HINSTANCE)GetWindowLongPtr(hWnd, GWLP_HINSTANCE), 
+            NULL
+        );
         
         if (!hWnd) {
             MessageBox (
@@ -111,8 +181,8 @@ int CALLBACK WinMain(
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
     PAINTSTRUCT ps;
     HDC hdc;
-    string s = "Old Message!";
-    const wchar_t* greeting = L"Old Message!"; 
+    //string s = "Old Message!";
+    //const wchar_t* greeting = L"Old Message!"; 
     const RECT* structure;
     switch (message) {
         case WM_PAINT:
@@ -120,7 +190,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
             // Here your application is laid out.
             // For this introduction, we just print out "Hello, Windows desktop!"
             // in the top left corner.
-            TextOutW(hdc, 10, 25, greeting, s.length());
+            // TextOutW(hdc, 10, 25, greeting, s.length());
             // End application-specific layout section.
             EndPaint(hWnd, &ps);
             break;
