@@ -1,4 +1,4 @@
-Calculator Project
+Calculator Project (Unfinished)
 
 This is my first personal project. In this project I practice using a Makefile, uploading to GitHub, and working with Windows GUI/API library to create a simple calculator application.  
 
